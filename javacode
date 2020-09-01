@@ -1,0 +1,45 @@
+
+	public static String longestPalindrome(String s) {
+		
+		if(s ==null || s.length()==0)
+			return "";
+		String ans=s.substring(0, 1);
+		for(int i=0;i<s.length();i++)
+		{
+			if(i+ans.length() >s.length() )
+				break;
+			String check = s.substring(i, i+1);
+            int start = s.indexOf(check,i)+1;
+            for(int j=1;j<s.length();j++)
+            {
+            	if(s.indexOf(check,start)  == -1 )
+            	{
+            		break;
+            	}
+            	else  //檢查是不是回文
+            	{
+            		String temp = s.substring(i, s.indexOf(check,start)+1);
+            		start = s.indexOf(check,start)+1;
+            		int hit=0;
+            		for(int k=0;k< temp.length()/2;k++)
+            		{
+            			if(temp.charAt(k) == temp.charAt(temp.length()-k-1))
+            			{
+            			}
+            			else
+            			{
+            				hit=1;
+            				break;
+            			}
+            		}
+
+            		if(hit == 0 && temp.length() > ans.length())
+            		{
+            			ans = temp;
+            		}
+            	}
+            }
+		}
+        
+		 return ans;
+	 }
